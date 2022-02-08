@@ -1,0 +1,5 @@
+
+
+- Créer un Dockerfile ou plusieurs dockerfile 
+- Créer un volume exemple docker run -d -v /chemin/vers/dossier/hote:/chemin/dossier/conteneur ....
+- Avec Docker inspect trouver les informations relatives au volume créé.

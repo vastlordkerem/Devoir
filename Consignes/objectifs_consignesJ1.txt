@@ -1,0 +1,15 @@
+Objectifs : 
+	- être capable de créer un conteneur et de gérer des images (container) docker (pull, start, stop, rm, rmi)
+	- être capable de modifier les variables d'environnements (-e, docker hub)
+	- être capable de monitorer les conteneurs en fonctionnement (top, inspect, logs)
+	- être capable d'accéder au shell d'un conteneur (exec -it)
+
+
+
+	- être capable de sauvegarder localement les modifications
+
+
+Rendu: 
+	- rédiger une documentation docker des commandes effectués ou exercices (après chaque cours)
+	- rendre les sources qui permettent de mettre en place l'infrastructure de votre  groupe (identique pour chaque membre du groupe)
+	- rédiger une documentation qui explique l'élaboration de l'infrastructure git (personnel)
