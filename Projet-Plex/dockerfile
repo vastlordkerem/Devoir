@@ -1,0 +1,37 @@
+FROM ubuntu:20.04
+
+
+# Version plex
+ARG VERSION_PLEX=1.25.5.5492-12f6b8c83
+
+# Lien de téléchargement
+ARG URL_PLEX=https://downloads.plex.tv/plex-media-server-new/${VERSION_PLEX}/debian/plexmediaserver_${VERSION_PLEX}_amd64.deb
+
+# Mettre à jours les paquets et installation des dépendances
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get -y install wget
+
+# Téléchargement de plex.
+RUN wget ${URL_PLEX}
+RUN dpkg -i plexmediaserver_${VERSION_PLEX}_amd64.deb && rm plexmediaserver_${VERSION_PLEX}_amd64.deb
+
+# Plex environment variables
+ENV PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR /var/lib/plexmediaserver/Library/Application Support
+ENV PLEX_MEDIA_SERVER_HOME /usr/lib/plexmediaserver
+ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS 6
+ENV PLEX_MEDIA_SERVER_MAX_STACK_SIZE 3000
+ENV PLEX_MEDIA_SERVER_TMPDIR /tmp
+ENV LD_LIBRARY_PATH ${PLEX_MEDIA_SERVER_HOME}
+
+# Port de l'application https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/
+EXPOSE 32400
+
+# Volume créer pour les médias 
+VOLUME /var/lib/plexmediaserver
+
+# Dossier de travail par défaut
+WORKDIR /var/lib/plexmediaserver
+
+# Lance l'application plex
+CMD ["/usr/lib/plexmediaserver/Plex Media Server"]

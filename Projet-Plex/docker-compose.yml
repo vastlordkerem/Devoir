@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  plex:
+    container_name: plex
+    image: test-plex-image1
+    network_mode: bridge
+    restart: unless-stopped
+    ports:
+      - "32400:32400" # (for access to the Plex Media Server) [required]
+    volumes:
+      - /var/lib/plexmediaserver/docker/plex/config:/config
+      - /var/lib/plexmediaserver/Media/Movies:/data/Movies:ro
+      - /var/lib/plexmediaserver/Media/Television:/data/Television:ro
